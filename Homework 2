@@ -1,0 +1,42 @@
+n=int(input("please enter the number of coordinates you will give:"))
+
+coordinate_list=[]
+for i in range(1,n+1):
+    print (i,'.cordinate')
+    (x,y)=float(input("please enter the x coordinate:")),float(input("please enter the y coordinate:"))
+    coordinate_list.append((x,y))
+
+kx=0
+ky=0
+lenght=len(coordinate_list)
+for i in range(lenght):
+    kx += coordinate_list[i][0]
+    ky += coordinate_list[i][1]
+
+k_m_x = kx/lenght
+k_m_y = ky/lenght
+
+center_of_mass=(k_m_x,k_m_y)
+print ("center of mass:",center_of_mass)
+
+distance_from_mass=[]
+for i in range(lenght):
+    distance=(((coordinate_list[i][0]-k_m_x)**2)+((coordinate_list[i][1]-k_m_y)**2))**0.5
+    distance_from_mass.append(distance)
+
+closest=distance_from_mass[0]
+farthest=distance_from_mass[0]
+indekscl=0
+indeksfh=0
+for i in range(1,len(distance_from_mass)):
+    if (distance_from_mass[i] < closest):
+        closest = distance_from_mass[i]
+        indekscl=i
+for i in range(1,len(distance_from_mass)):
+    if (distance_from_mass[i] > farthest):
+        farthest=distance_from_mass[i]
+        indeksfh=i
+
+print ('the farthest coordinate from the center of mass:', indeksfh+1,'.coordinate',coordinate_list[indeksfh],'and distance:',farthest)
+print ('the closest coordinate from the center of mass:',indekscl+1,'.coordinate',coordinate_list[indekscl],'and distance:',closest)
+
